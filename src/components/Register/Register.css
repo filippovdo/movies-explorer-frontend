@@ -1,0 +1,152 @@
+
+.register__form {
+  justify-content: space-between;
+  width: 395px;
+  height: 525px;
+  box-sizing: border-box;
+  margin: 34px 0 16px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.register__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.register__logo {
+  width: 40px;
+  height: 40px;
+}
+
+.register__title {
+  margin: 40px 0 40px;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 31px;
+  color: black;
+}
+
+.register__lable {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.register__field {
+  margin-top: 5px;
+  height: 27px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #E8E8E8;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.register__field:focus {
+  outline: -webkit-focus-ring-color 2px solid #3456F3;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100vh;
+  justify-content: start;
+}
+
+
+
+.register__span {
+  margin: 8px 0 8px;
+  height: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FF3055;
+}
+
+.register__submit {
+  padding: 0;
+  width: 395px;
+  height: 45px;
+  cursor: pointer;
+  background-color: #3456F3;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.register__submit:hover {
+  opacity: 0.8;
+}
+
+.register__bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.register__text {
+  margin: 0;
+  margin-right: 6px;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  font-weight: 400;
+}
+
+.register__link {
+  color: #3456F3;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 850px) {
+  .register__form {
+    width: 390px;
+  }
+
+  .register__submit {
+    width: 390px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .register__form {
+    width: 260px;
+    margin: 20px 30px 14px;
+  }
+
+  
+  .register__title {
+    margin: 50px 0 80px;
+    align-self: center;
+  }
+
+  .register__submit {
+    width: 260px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__logo {
+    align-self: center;
+  }
+
+}

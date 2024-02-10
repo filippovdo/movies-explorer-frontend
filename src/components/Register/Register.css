@@ -112,6 +112,8 @@
   text-decoration: none;
 }
 
+
+
 @media screen and (max-width: 850px) {
   .register__form {
     width: 390px;

@@ -1,7 +1,7 @@
 import React from "react";
-import './App.css';
+import "./App.css";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from 'react-router-dom'; 
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
@@ -14,10 +14,11 @@ import Main from "../Main/Main";
 
 export const UserContext = React.createContext();
 
-
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState("");
+  const location = useLocation();
 
   function closeBurgerMenu() {
     setIsBurgerMenuOpen(false);
@@ -29,42 +30,37 @@ function App() {
     } else setIsBurgerMenuOpen(true);
   }
 
+  const isSignupPage = location.pathname === '/signup';
+
   return (
+
     <UserContext.Provider value={currentUser}>
       <div className="app">
-        <Header 
-          handleBurgerClick={handleBurgerClick}
-          isBurgerOpen={isBurgerMenuOpen}
-          onClose={closeBurgerMenu}
-        />
+        {!isSignupPage && (
+          <Header 
+            handleBurgerClick={handleBurgerClick}
+            isBurgerOpen={isBurgerMenuOpen}
+            onClose={closeBurgerMenu}
+          />
+        )}
         <main className="app__main">
-        <Routes>
-          <Route
-            path="/"
-            element={<Main />}
-          />
-          <Route
-            path="/movies"
-            element={<Movies  />}
-          />
-          <Route
-            path="/saved-movies"
-            element={<SavedMovies />}
-          />
-          <Route
-            path="/profile"
-            element={<> <Profile /> </>}
-          />
-          <Route
-            path="/signup"
-            element={<Register />}
-          />
-          <Route
-            path="/signin"
-            element={<Login />}
-          />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route
+              path="/profile"
+              element={
+                <>
+                  {" "}
+                  <Profile />{" "}
+                </>
+              }
+            />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
         </main>
         <Footer />
       </div>

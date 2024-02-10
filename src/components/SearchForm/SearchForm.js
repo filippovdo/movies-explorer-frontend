@@ -11,7 +11,7 @@ function SearchForm() {
             className='searchbar__input'
             type='text'
             name='searchbar'
-            placeholder='Название фильма'
+            placeholder='Фильм'
           />
         </label>
         <button type='submit' className='searchbar__button button'>Найти</button>

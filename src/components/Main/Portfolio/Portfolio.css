@@ -10,6 +10,7 @@
   line-height: 20px;
   color: #A0A0A0;
   mix-blend-mode: normal;
+  float: left;
 }
 
 .portfolio__container {

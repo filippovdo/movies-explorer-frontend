@@ -25,7 +25,7 @@ function Header() {
     <header
       className={`${
         location.pathname === '/' ? 'header_dark' : ''
-      } header page__centered`}
+      } header container70`}
     >
       <Link to='/'>
         <div className='logo' />

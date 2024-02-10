@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Promo() {
   return (
-    <section className="promo page__centered">
+    <section className="promo container70">
       <div className="promo__text">
         <h1 className="promo__header">
           Учебный проект студента факультета Веб-разработки.

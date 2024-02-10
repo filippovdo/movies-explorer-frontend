@@ -6,6 +6,7 @@ import "./Movies.css";
 function Movies() {
   return (
     <>
+    <main className="container70">
       <SearchForm />
       <MoviesCardList />
       <section class="also">
@@ -13,6 +14,7 @@ function Movies() {
           Ещё
         </button>
       </section>
+      </main>
     </>
   );
 }

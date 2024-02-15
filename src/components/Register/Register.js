@@ -1,66 +1,82 @@
 import React from "react";
-import logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
+
 import "./Register.css";
 
 function Register() {
+
+  
+
   return (
-    <section className="register">
-      <form name="register__form" className="register__form">
-        <div className="register__inputs">
-          <Link className="register__logo" to="/">
-            <img className="register__logo" src={logo} alt="Movies Logo" />
+    <main className="register">
+      <div className="register__container">
+        <div className="register__items">
+          <Link to="/">
+            <div className="logo" />
           </Link>
-          <h2 className="register__title">Добро пожаловать!</h2>
-          <label for="name-field" className="register__lable">
-            Имя
-          </label>
-          <input
-            type="text"
-            id="name-field"
-            className="register__field"
-            minLength="2"
-            maxLength="40"
-            name="name"
-          />
-          <span className="login__input_error register__span"></span>
-          <label for="email-inputs" className="register__lable">
-            E-mail
-          </label>
-          <input
-            type="email"
-            id="email-inputs"
-            className="register__field"
-            name="email"
-          />
-          <span className="email-inputs-error register__span"></span>
-          <label for="password-input" className="register__lable">
-            Пароль
-          </label>
-          <input
-            type="text"
-            id="password-input"
-            className="register__field"
-            name="password"
-          />
-          <span className="password-input-error register__span"></span>
+          <h1 className="register__title">Добро пожаловать!</h1>
+          <form className="register__form" name="signup">
+            <fieldset className="register__inputs">
+              <label>
+                <span className="register__input-title">Имя</span>
+                <input
+                  name="name"
+                  type="text"
+                  className={`register__input`}
+                  id="name-input"
+                  placeholder="Введите имя"
+                  minLength="2"
+                  maxLength="40"
+                  required
+                />
+                <div className="input-error">Обязательное поле</div>
+              </label>
+              <label>
+                <span className="register__input-title">E-mail</span>
+                <input
+                  name="email"
+                  type="email"
+                  className={`register__input`}
+                  id="email-input"
+                  placeholder="Введите email"
+                  minLength="2"
+                  maxLength="40"
+                  required
+                />
+                <div className="input-error">Обязательное поле</div>
+              </label>
+              <label>
+                <span className="register__input-title">Пароль</span>
+                <input
+                  name="password"
+                  type="password"
+                  className={`register__input`}
+                  id="password-input"
+                  placeholder="Введите пароль"
+                  minLength="8"
+                  maxLength="16"
+                  required
+                />
+                <div className="input-error">Обязательное поле</div>
+              </label>
+            </fieldset>
+          </form>
         </div>
-        <button
-          type="submit"
-          className="register__submit"
-          name="submit"
-          defaultValue="Зарегистрироваться"
-        >
-          Зарегистрироваться
-        </button>
-      </form>
-      <div className="register__bottom">
-        <h2 className="register__text">Уже зарегистрированы?</h2>
-        <Link to="/signin" className="register__text register__link">
-          Войти
-        </Link>
+        <div className="register__submit">
+          <button type="submit" className={`button register__submit-button`}>
+            Зарегистрироваться
+          </button>
+          <p className="register__text">
+            Уже зарегистрированы?{" "}
+            <span>
+              <Link to="/signin" className="register__login-link link">
+                Войти
+              </Link>
+            </span>{" "}
+          </p>
+        </div>
       </div>
-    </section>
+    </main>
   );
 }
 

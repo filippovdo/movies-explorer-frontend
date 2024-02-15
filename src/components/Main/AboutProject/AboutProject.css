@@ -92,19 +92,26 @@
 }
 
 @media screen and (max-width: 880px) {
+
+  .container70{
+    padding-left:30px;
+  }
+  
+.AboutProject__container{
+  margin-top: 88px;
+}
   .project {
     margin: 90px 50px 90px;
   }
   .AboutProject__columns {
-    margin-top: 60px;
-    column-gap: 30px;
+    margin-top: 74px;
+    column-gap: 33px;
   }
   .AboutProject__title {
     margin-bottom: 16px;
   }
   .AboutProject__text {
     font-size: 12px;
-    line-height: 18px;
   }
   .AboutProject__grid {
     margin-top: 93px;

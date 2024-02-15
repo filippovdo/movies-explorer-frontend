@@ -31,12 +31,13 @@ function App() {
   }
 
   const isSignupPage = location.pathname === '/signup';
+  const isSigninPage = location.pathname === '/signin';
+  const isNotFoundPage = location.pathname === '*';
 
   return (
-
     <UserContext.Provider value={currentUser}>
       <div className="app">
-        {!isSignupPage && (
+        {(!isSignupPage && !isSigninPage && !isNotFoundPage) && (
           <Header 
             handleBurgerClick={handleBurgerClick}
             isBurgerOpen={isBurgerMenuOpen}
@@ -67,5 +68,6 @@ function App() {
     </UserContext.Provider>
   );
 }
+
 
 export default App;

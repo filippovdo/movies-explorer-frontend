@@ -1,4 +1,6 @@
-
+.account-button{
+  text-decoration: none;
+}
 
 .account-button__container {
   width: 100px;
@@ -11,7 +13,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  text-decoration: none;
 }
 
 .account-button__text {
@@ -20,6 +22,7 @@
   font-size: 13px;
   font-weight: 500;
   line-height: 0.92; 
+  text-decoration: none;
 }
 
 .account-button__icon {

@@ -48,6 +48,19 @@
   color: #000000;
 }
 
+
+
+@media screen and (max-width: 1080px) {
+  .portfolio__text {
+    font-size: 28px;
+    line-height: 1.78;
+    letter-spacing: -1.12px;
+}
+
+
+}
+
+
 @media screen and (max-width: 880px) {
   .portfolio {
     margin: 0 50px 90px;

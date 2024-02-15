@@ -54,6 +54,24 @@
   text-decoration: none;
 }
 
+@media screen and (max-width: 1080px) {
+  .footer__info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-size: 13px;
+}
+
+.footer__copyright{
+  margin-left: -40px;
+}
+
+.footer__links{
+margin-right: -40px;
+}
+}
+
+
 @media screen and (max-width: 580px) {
   .footer {
     min-height: 253px;

@@ -1,73 +1,32 @@
-import React from "react";
-import "./App.css";
-import { useState } from "react";
-import { Routes, Route, useLocation } from 'react-router-dom'; 
-import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
-import Profile from "../Profile/Profile";
-import Footer from "../Footer/Footer";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import PageNotFound from "../PageNotFound/PageNotFound";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-
-export const UserContext = React.createContext();
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import Main from '../Main/Main';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Movies from '../Movies/Movies';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const [currentRoute, setCurrentRoute] = useState("");
-  const location = useLocation();
-
-  function closeBurgerMenu() {
-    setIsBurgerMenuOpen(false);
-  }
-
-  function handleBurgerClick() {
-    if (isBurgerMenuOpen) {
-      setIsBurgerMenuOpen(false);
-    } else setIsBurgerMenuOpen(true);
-  }
-
-  const isSignupPage = location.pathname === '/signup';
-  const isSigninPage = location.pathname === '/signin';
-  const isNotFoundPage = location.pathname === '*';
-
   return (
-    <UserContext.Provider value={currentUser}>
-      <div className="app">
-        {(!isSignupPage && !isSigninPage && !isNotFoundPage) && (
-          <Header 
-            handleBurgerClick={handleBurgerClick}
-            isBurgerOpen={isBurgerMenuOpen}
-            onClose={closeBurgerMenu}
-          />
-        )}
-        <main className="app__main">
+    <div className="App">
+      <div className="App_page">
+        <div className="html__container">
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route
-              path="/profile"
-              element={
-                <>
-                  {" "}
-                  <Profile />{" "}
-                </>
-              }
-            />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path='/' element={<Main />}></Route>
+            <Route path='/movies' element={<Movies />}></Route>
+            <Route path='/saved-movies' element={<SavedMovies />}></Route>
+            <Route path='/profile' element={<Profile />}></Route>
+            <Route path='/signin' element={<Login />}></Route>
+            <Route path='/signup' element={<Register />}></Route>
+            <Route path='*' element={<NotFound />}></Route>
           </Routes>
-        </main>
-        <Footer />
+        </div>
       </div>
-    </UserContext.Provider>
+    </div>
   );
 }
-
 
 export default App;

@@ -1,64 +1,136 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useInput from "../../utils/validation";
+import Header from "../Header/Header";
 import "./Profile.css";
 
 function Profile() {
+  const [onEdit, setOnEdit] = useState(false);
+
+  const username = useInput("", {
+    isEmpty: true,
+    minLength: 2,
+    maxLength: 40,
+  });
+
+  const email = useInput("", {
+    isEmpty: true,
+    isEmailError: false,
+  });
+
+  function handleEditClick() {
+    setOnEdit(true);
+  }
+
+  function handleSaveClick() {
+    document
+      .querySelector(".profile__save-button")
+      .classList.add("profile__save-button_disabled");
+    document
+      .querySelector(".profile__error-message")
+      .classList.remove("profile__error-message_hidden");
+  }
+
   return (
-    <section className="profile">
-      <form name="profile__form" className="profile__form">
-        <div className="profile__inputs">
-          <h2 className="profile__title">Привет, Виталий!</h2>
-          <div className="profile__input">
-            <label for="name-field" className="profile__lable">
-              Имя
-            </label>
-            <input
-              type="text"
-              id="name-field"
-              className="profile__field"
-              minLength="2"
-              maxLength="40"
-              required
-              name="name"
-              defaultValue="Виталий"
-              disabled
-            />
-            <span className="login__input_error profile__span"></span>
+    <>
+      <Header />
+      <main className="profile">
+        <section className="profile__container">
+          <form className="profile__form" name="profile-form">
+            <h1 className="profile__title">Привет, Виталий!</h1>
+            <fieldset className="profile__fields">
+              <span className="profile__field-title">Имя</span>
+              <label className="profile__field-container">
+                {username.isTouched && username.isEmpty ? (
+                  <div className="input-error">Обязательное поле</div>
+                ) : (
+                  !username.isEmpty &&
+                  (username.minLength || username.maxLength) && (
+                    <div className="input-error">
+                      Введите от 2 до 40 символов
+                    </div>
+                  )
+                )}
+                <input
+                  onChange={(e) => username.onChange(e)}
+                  onBlur={(e) => username.onBlur(e)}
+                  value={username.value}
+                  type="text"
+                  className={`profile__field ${
+                    !username.isEmpty &&
+                    (username.minLength || username.maxLength)
+                      ? "profile__field_error"
+                      : ""
+                  }`}
+                  placeholder="Виталий"
+                />
+              </label>
+              <span className="profile__field-title">E-mail</span>
+              <label className="profile__field-container">
+                <input
+                  onChange={(e) => email.onChange(e)}
+                  onBlur={(e) => email.onBlur(e)}
+                  value={email.value}
+                  type="email"
+                  className={`profile__field ${
+                    !email.isEmpty && email.isEmailError
+                      ? "profile__field_error"
+                      : ""
+                  }`}
+                  placeholder="pochta@yandex.ru"
+                  required
+                />
+                {email.isTouched && email.isEmpty ? (
+                  <div className="input-error input-error_bottom">
+                    Обязательное поле
+                  </div>
+                ) : (
+                  !email.isEmpty &&
+                  email.isEmailError && (
+                    <div className="input-error input-error_bottom">
+                      Введите корректный email
+                    </div>
+                  )
+                )}
+              </label>
+            </fieldset>
+          </form>
+          <div className="profile__submit">
+            {!onEdit && (
+              <>
+                <button
+                  onClick={handleEditClick}
+                  type="button"
+                  className="profile__button button"
+                >
+                  Редактировать
+                </button>
+                <Link
+                  to="/"
+                  className="profile__button profile__button_logout button"
+                >
+                  Выйти из аккаунта
+                </Link>
+              </>
+            )}
+            {onEdit && (
+              <>
+                <div className="profile__error-message profile__error-message_hidden">
+                  При обновлении профиля произошла ошибка.
+                </div>
+                <button
+                  onClick={handleSaveClick}
+                  type="submit"
+                  className="profile__button profile__save-button button"
+                >
+                  Сохранить
+                </button>
+              </>
+            )}
           </div>
-          <div className="profile__input">
-            <label for="email-inputs" className="profile__lable">
-              E-mail
-            </label>
-            <input
-              type="email"
-              id="email-inputs"
-              className="profile__field profile__field-last"
-              minLength="2"
-              maxLength="50"
-              required
-              name="email"
-              defaultValue="pochta@yandex.ru"
-              disabled
-            />
-            <span className="email-inputs-error profile__span"></span>
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="profile__submit"
-          name="submit"
-          defaultValue="Сохранить"
-        >
-          Сохранить
-        </button>
-      </form>
-      <div className="profile__bottom">
-        <Link className="profile__link">Редактировать</Link>
-        <Link to="/signup" className="profile__link profile__link-red">
-          Выйти из аккаунта
-        </Link>
-      </div>
-    </section>
+        </section>
+      </main>
+    </>
   );
 }
 

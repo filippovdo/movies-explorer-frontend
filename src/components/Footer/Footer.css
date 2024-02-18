@@ -1,43 +1,15 @@
 .footer {
-  min-height: 210px;
-  margin: 0 70px 0;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.footer__title {
-  margin: 0;
-  margin-top: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #E8E8E8;
-  width: 100%;
-  font-weight: 400;
   font-size: 13px;
-  line-height: 16px;
-  text-align: center;
-  color: #A0A0A0;
 }
 
-.footer__info {
-  width: 100%;
-  padding: 20px 0 20px;
+.footer__items {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  padding: 20px 0;
 }
-
 .footer__copyright {
   margin: 0;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: #000000;
 }
-
 .footer__links {
   display: flex;
   margin: 0;
@@ -46,52 +18,53 @@
   gap: 20px;
 }
 
+.footer__info {
+  color: #a0a0a0;
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  margin: 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+
+
 .footer__link {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: #000000;
   text-decoration: none;
+  color: black;
+  transition: opacity 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 1080px) {
-  .footer__info {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-    font-size: 13px;
-}
-
-.footer__copyright{
-  margin-left: -40px;
-}
-
-.footer__links{
-margin-right: -40px;
-}
-}
-
-
-@media screen and (max-width: 580px) {
   .footer {
-    min-height: 253px;
-    margin: 0 10px 0;
+    padding: 0 30px;
   }
-  .footer__title {
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 0 10px;
     font-size: 12px;
-    line-height: 15px;
+
   }
-  .footer__info {
-    padding: 30px 0 20px;
+
+  .footer__items {
     flex-direction: column-reverse;
-    gap: 30px;
+    align-items: center;
+    padding: 33px 0 20px 0;
   }
+
   .footer__links {
     flex-direction: column;
+    align-items: center;
     gap: 12px;
   }
+
   .footer__link {
-    font-size: 12px;
-    line-height: 15px;
+    margin-top: 1px;
+  }
+
+  .footer__copyright {
+    padding-top: 33px;
   }
 }

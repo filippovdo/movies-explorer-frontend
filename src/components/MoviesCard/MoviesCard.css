@@ -1,81 +1,69 @@
-.cards__pic {
+.moviesCard {
   width: 100%;
-  
-  object-fit: cover;
 }
 
-.cards__container {
-  padding: 2px;
-  display: flex;
-  flex-direction: row;
+
+.moviesCard__description {
   align-items: center;
-  box-sizing: border-box;
-  justify-content: space-between;
-}
-
-.cards__info {
+  padding: 10px 0 25px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 5px 0 25px;
+
 }
 
-.cards {
-  background: #FDFDFD;
-}
-
-
-.cards__name {
+.moviesCard__name {
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
   margin: 0;
 }
 
-.cards__duration {
-  margin: 0;
-  font-weight: 400;
+.moviesCard__img {
+  width: 100%;
+  height: 150px;
+  display: block;
+  object-fit: cover;
+}
+
+
+.moviesCard__button-container {
+  opacity: 1;
+}
+
+.moviesCard__button-container_hidden {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.moviesCard__button {
+  width: 24px;
+  height: 24px;
+}
+
+.moviesCard__duration {
+  color: #a0a0a0;
   font-size: 11px;
-  line-height: 13px;
-  display: flex;
-  align-items: center;
-  color: #A0A0A0;
-  align-self: start;
-  padding-top: 5px;
-  border-top: 1px solid #dedede;
-}
-
-.cards__button {
-  width: 30px;
-  height: 30px;
-  background: rgba(255, 255, 255, 0);
-  cursor: pointer;
-  transition: opacity 0.5s;
+  font-weight: 400;
+  line-height: normal;
+  border-top: 1px solid #e8e8e8;
   margin: 0;
-  padding: 0;
-  border: 0;
+  padding-top: 6px;
 }
 
-.cards__button:hover {
-  opacity: 0.9;
-}
-
-.cards__save {
-  background-image: url(../../images/button__save.svg);
-}
-
-.cards__close {
-  background-image: url(../../images/movieclose.svg);
-}
-
-@media screen and (max-width: 880px) {
-  .cards__pic {
+@media screen and (max-width: 1080px) {
+  .moviesCard__img {
     height: 190px;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .cards__pic {
-    height: 168px;
+@media screen and (max-width: 600px) {
+  .moviesCard__img {
+    height: 170px;
+  }
+
+  .moviesCard__button-container_hidden {
+    opacity: 1;
   }
 }

@@ -1,42 +1,67 @@
 import React from "react";
-import logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
-import './Login.css';
+
+import "./Login.css";
 
 function Login() {
   return (
-    <section className="login">
-      <form name="login__form" className="login__form">
-        <div className="login__input">
-          <Link className="login__logo" to="/"><img className="login__logo" src={logo} /></Link>
-          <h2 className="login__title">Рады видеть!</h2>
-          <label for="email-inputs" className="login__input_title">E-mail</label>
-          <input 
-            type="email" 
-            id="email-inputs" 
-            className="login__inputs"  
-            maxLength="50" 
-            required 
-            name="email"/>
-          <span className="login__input_error login__span"></span>
-          <label for="password-input" className="login__input_title">Пароль</label>
-          <input
-            type="text"
-            id="password-input"
-            className="login__inputs"
-            maxLength="40"
-            required
-            name="password"
-          />
-          
+    <>
+      <main className="signup">
+        <div className="signup__container">
+          <div className="signup__items">
+            <Link to="/">
+              <div className="logo" />
+            </Link>
+            <h1 className="signup__title">Рады видеть!</h1>
+            <form className="signup__form" name="signin">
+              <fieldset className="signup__fields">
+                <label className="signup__field-container">
+                  <span className="signup__field-title">E-mail</span>
+                  <input
+                    name="email"
+                    type="email"
+                    className="signup__field"
+                    id="email-input"
+                    placeholder="Введите email"
+                    minLength="2"
+                    maxLength="40"
+                    required
+                  />
+                  <div className="input-error">Обязательное поле</div>
+                </label>
+                <label className="signup__field-container">
+                  <span className="signup__field-title">Пароль</span>
+                  <input
+                    name="password"
+                    type="password"
+                    className="signup__field"
+                    id="password-input"
+                    placeholder="Введите пароль"
+                    minLength="8"
+                    maxLength="16"
+                    required
+                  />
+                  <div className="input-error">Обязательное поле</div>
+                </label>
+              </fieldset>
+            </form>
+          </div>
+          <div className="signup__submit">
+            <button type="submit" className="button signup__submit-button">
+              Войти
+            </button>
+            <p className="signup__text">
+              Ещё не зарегистрированы?{" "}
+              <span>
+                <Link to="/signup" className="signup__signup-link link">
+                  Регистрация
+                </Link>
+              </span>{" "}
+            </p>
+          </div>
         </div>
-        <button type="submit" className="login__submit" name="submit" defaultValue="Войти">Войти</button>
-      </form>
-      <div className="login__bottom">
-        <h2 className="login__text">Ещё не зарегистрированы?</h2>
-        <Link to="/signup" className="login__text login__link">Регистрация</Link>
-      </div>
-    </section>
+      </main>
+    </>
   );
 }
 

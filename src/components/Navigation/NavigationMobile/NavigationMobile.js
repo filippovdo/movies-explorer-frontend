@@ -11,7 +11,7 @@ function NavigationMobile({ isOpen, onClose }) {
       <div className={`nav-mobile ${isOpen ? 'nav-mobile_opened' : ''}`}>
         <div className='nav-mobile__wrapper'>
           <button
-            className='nav-mobile__close-btn button'
+            className='nav-mobile__close-button button'
             type='button'
             onClick={onClose}
           ></button>
@@ -21,7 +21,7 @@ function NavigationMobile({ isOpen, onClose }) {
                 <Link
                   to='/'
                   className={`nav-mobile__item link ${
-                    location.pathname === '/' ? 'nav-mobile__active' : ''
+                    location.pathname === '/' ? 'nav-mobile__item_active' : ''
                   }`}
                 >
                   Главная
@@ -32,7 +32,7 @@ function NavigationMobile({ isOpen, onClose }) {
                   to='/movies'
                   className={`nav-mobile__item link ${
                     location.pathname === '/movies'
-                      ? 'nav-mobile__active'
+                      ? 'nav-mobile__item_active'
                       : ''
                   }`}
                 >
@@ -44,7 +44,7 @@ function NavigationMobile({ isOpen, onClose }) {
                   to='/saved-movies'
                   className={`nav-mobile__item link ${
                     location.pathname === '/saved-movies'
-                      ? 'nav-mobile__active'
+                      ? 'nav-mobile__item_active'
                       : ''
                   }`}
                 >

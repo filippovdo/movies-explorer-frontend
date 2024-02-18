@@ -1,36 +1,31 @@
-.input-error{
-  display: none;
-}
-
-.register {
-  display: flex;
-  position: relative;
+.signupReg {
   width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  display: flex;
+  position: relative;
 }
 
-.register__container {
+.signupReg__container {
   padding-top: 10px;
 }
 
-.register__title {
+.signupReg__title {
   font-size: 24px;
   font-weight: 500;
   line-height: normal;
   margin: 40px 0 16px;
-  text-align: left;
 }
 
-.register__inputs {
+.signupReg__fields {
   border: 0;
   margin: 0;
   padding: 0;
 }
 
-.register__input-title {
+.signupReg__field-title {
   display: block;
   color: #a0a0a0;
   font-size: 10px;
@@ -38,10 +33,9 @@
   line-height: normal;
   padding-top: 24px;
   margin: 0;
-  text-align: left;
 }
 
-.register__input {
+.signupReg__field {
   width: 100%;
   color: #000;
   border: 0;
@@ -50,6 +44,7 @@
 
   font-size: 14px;
   line-height: normal;
+
   &:focus {
     outline: none;
     border: none;
@@ -57,11 +52,11 @@
   }
 }
 
-.register__input_error {
+.signupReg__field_error {
   color: #FF3055;
 }
 
-.register__submit-button {
+.signupReg__submit-button {
   width: 396px;
   height: 45px;
   margin-top: 152px;
@@ -74,16 +69,17 @@
   line-height: normal;
 }
 
-.register__submit-button_disabled {
+.signupReg__submit-button_disabled {
   background: #F8F8F8;
   color: #C2C2C2;
   cursor: auto;
+
   &:hover {
     opacity: 1;
   }
 }
 
-.register__text {
+.signupReg__text {
   color: #a0a0a0;
   text-align: center;
   font-size: 14px;
@@ -91,7 +87,7 @@
   line-height: normal;
 }
 
-.register__login-link {
+.signupReg__login-link {
   color: #3456f3;
   text-align: center;
   font-size: 14px;
@@ -99,11 +95,10 @@
   line-height: normal;
 }
 
-@media screen and (max-width: 1080px) {
-}
+@media screen and (max-width: 1080px) {}
 
 @media screen and (max-width: 600px) {
-  .register__container {
+  .signupReg__container {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -113,31 +108,31 @@
     padding: 56px 0 18px;
   }
 
-  .register__items {
+  .signupReg__items {
     width: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .register__title {
+  .signupReg__title {
     margin: 50px 0 0 0;
   }
 
-  .register__form {
+  .signupReg__form {
     width: 100%;
     align-self: flex-start;
     padding-top: 56px;
   }
 
-  .register__submit-button {
+  .signupReg__submit-button {
     margin: 0;
     width: 260px;
     font-size: 12px;
   }
 
-  .register__text,
-  .register__login-link {
+  .signupReg__text,
+  .signupReg__login-link {
     font-size: 12px;
   }
 }

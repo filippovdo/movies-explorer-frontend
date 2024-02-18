@@ -1,44 +1,39 @@
-import React from "react";
 import "./Footer.css";
-import { Routes, Route } from "react-router-dom";
 
 function Footer() {
   return (
-    <Routes>
-      {["/", "/movies", "/saved-movies"].map((path) => (
-        <Route
-          path={path}
-          element={
-            <footer className="footer">
-              <h2 className="footer__title">
-                Учебный проект Яндекс.Практикум х BeatFilm.
-              </h2>
-              <div className="footer__info">
-                <p className="footer__copyright">© 2024</p>
-                <div className="footer__links">
-                  <a
-                    href="https://practicum.yandex.ru/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer__link"
-                  >
-                    Яндекс.Практикум
-                  </a>
-                  <a
-                    href="https://github.com/filippovdo"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer__link"
-                  >
-                    Github
-                  </a>
-                </div>
-              </div>
-            </footer>
-          }
-        />
-      ))}
-    </Routes>
+    <footer className="footer html__centered">
+      <p className="footer__info">
+        Учебный проект Яндекс.Практикум х BeatFilm.
+      </p>
+      <div className="footer__items">
+        <p className="footer__copyright">© 2024</p>
+        <nav>
+          <ul className="footer__links">
+            <li>
+              <a
+                href="https://practicum.yandex.ru/"
+                target="_blank"
+                rel="noreferrer"
+                className="footer__link link"
+              >
+                Яндекс.Практикум
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/filippovdo"
+                target="_blank"
+                rel="noreferrer"
+                className="footer__link link"
+              >
+                Github
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
   );
 }
 

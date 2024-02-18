@@ -1,7 +1,8 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import AccountButton from "../AccountButton/AccountButton";
-import "./Navigation.css";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import AccountButton from '../AccountButton/AccountButton';
+
+import './Navigation.css';
 
 function Navigation({ loggedIn }) {
   const location = useLocation();
@@ -10,15 +11,15 @@ function Navigation({ loggedIn }) {
     <>
       {loggedIn ? (
         <>
-          <nav className="nav">
-            <ul className="nav__items">
+          <nav className='navigation'>
+            <ul className='nav__items'>
               <li>
                 <Link
-                  to="/movies"
+                  to='/movies'
                   className={`${
-                    location.pathname === "/movies"
-                      ? "nav__active"
-                      : ""
+                    location.pathname === '/movies'
+                      ? 'nav__item_active'
+                      : ''
                   } nav__item link`}
                 >
                   Фильмы
@@ -26,11 +27,11 @@ function Navigation({ loggedIn }) {
               </li>
               <li>
                 <Link
-                  to="/saved-movies"
+                  to='/saved-movies'
                   className={`${
-                    location.pathname === "/saved-movies"
-                      ? "nav__active"
-                      : ""
+                    location.pathname === '/saved-movies'
+                      ? 'nav__item_active'
+                      : ''
                   } nav__item link`}
                 >
                   Сохранённые фильмы
@@ -41,11 +42,11 @@ function Navigation({ loggedIn }) {
           <AccountButton />
         </>
       ) : (
-        <nav className="nav">
-          <Link to="/signup" className="nav__signup link">
+        <nav className='navigation'>
+          <Link to='/signup' className='nav__signup link'>
             Регистрация
           </Link>
-          <Link to="/signin" className="nav__signin link">
+          <Link to='/signin' className='nav__signin link'>
             <span>Войти</span>
           </Link>
         </nav>

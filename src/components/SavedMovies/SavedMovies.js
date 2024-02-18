@@ -1,14 +1,22 @@
-import React from "react";
-import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { savedMovies } from '../../utils/savedMovies';
+
+import './SavedMovies.css';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function SavedMovies() {
   return (
     <>
-      <main className="container70">
-        <SearchForm />
-        <MoviesCardList />
-      </main>
+      <div className='content'>
+        <Header />
+        <main className='saved_movies html__centered html__centered_s'>
+          <SearchForm />
+          <MoviesCardList movies={savedMovies} />
+        </main>
+      </div>
+      <Footer />
     </>
   );
 }

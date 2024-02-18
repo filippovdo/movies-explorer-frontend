@@ -1,78 +1,87 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useInput from '../../utils/validation';
 
-import "./Register.css";
+import './Register.css';
 
 function Register() {
+  const username = useInput('', {});
 
-  
+  const email = useInput('', {});
+
+  const password = useInput('', {});
+
+  // сдел вал
 
   return (
-    <main className="register">
-      <div className="register__container">
-        <div className="register__items">
-          <Link to="/">
-            <div className="logo" />
+    <main className='signupReg'>
+      <div className='signupReg__container'>
+        <div className='signupReg__items'>
+          <Link to='/'>
+            <div className='logo' />
           </Link>
-          <h1 className="register__title">Добро пожаловать!</h1>
-          <form className="register__form" name="signup">
-            <fieldset className="register__inputs">
+          <h1 className='signupReg__title'>Добро пожаловать!</h1>
+          <form className='signupReg__form' name='signup'>
+            <fieldset className='signupReg__fields'>
               <label>
-                <span className="register__input-title">Имя</span>
+                <span className='signupReg__field-title'>Имя</span>
                 <input
-                  name="name"
-                  type="text"
-                  className={`register__input`}
-                  id="name-input"
-                  placeholder="Введите имя"
-                  minLength="2"
-                  maxLength="40"
+                  onChange={(e) => username.onChange(e)}
+                  onBlur={(e) => username.onBlur(e)}
+                  value={username.value}
+                  name='name'
+                  type='text'
+                  className='signupReg__field'
+                  id='name-input'
+                  placeholder='Введите имя'
                   required
                 />
-                <div className="input-error">Обязательное поле</div>
               </label>
               <label>
-                <span className="register__input-title">E-mail</span>
+                <span className='signupReg__field-title'>E-mail</span>
                 <input
-                  name="email"
-                  type="email"
-                  className={`register__input`}
-                  id="email-input"
-                  placeholder="Введите email"
-                  minLength="2"
-                  maxLength="40"
+                  onChange={(e) => email.onChange(e)}
+                  onBlur={(e) => email.onBlur(e)}
+                  value={email.value}
+                  name='email'
+                  type='email'
+                  className='signupReg__field'
+                  id='email-input'
+                  placeholder='Введите email'
                   required
                 />
-                <div className="input-error">Обязательное поле</div>
               </label>
               <label>
-                <span className="register__input-title">Пароль</span>
+                <span className='signupReg__field-title'>Пароль</span>
                 <input
-                  name="password"
-                  type="password"
-                  className={`register__input`}
-                  id="password-input"
-                  placeholder="Введите пароль"
-                  minLength="8"
-                  maxLength="16"
+                  onChange={(e) => password.onChange(e)}
+                  onBlur={(e) => password.onBlur(e)}
+                  value={password.value}
+                  name='password'
+                  type='password'
+                  className='signupReg__field'
+                  id='password-input'
+                  placeholder='Введите пароль'
                   required
                 />
-                <div className="input-error">Обязательное поле</div>
               </label>
             </fieldset>
           </form>
         </div>
-        <div className="register__submit">
-          <button type="submit" className={`button register__submit-button`}>
+        <div className='signupReg__submit'>
+          <button
+            type='submit'
+            className='button signupReg__submit-button'
+          >
             Зарегистрироваться
           </button>
-          <p className="register__text">
-            Уже зарегистрированы?{" "}
+          <p className='signupReg__text'>
+            Уже зарегистрированы?{' '}
             <span>
-              <Link to="/signin" className="register__login-link link">
+              <Link to='/signin' className='signupReg__login-link link'>
                 Войти
               </Link>
-            </span>{" "}
+            </span>{' '}
           </p>
         </div>
       </div>
@@ -81,3 +90,4 @@ function Register() {
 }
 
 export default Register;
+

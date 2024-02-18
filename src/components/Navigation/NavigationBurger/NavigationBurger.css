@@ -5,12 +5,12 @@
 .burger__button {
   width: 44px;
   height: 44px;
-  background-image: url(../../../images/burger_menu.svg);
+  background-image: url(../../../images/mobile-burger.svg);
   background-size: cover;
 }
 
 .burger__button_black {
-  background-image: url(../../../images/burger_menu.svg);
+  background-image: url(../../../images/mobile-black_burger.svg);
 }
 
 @media screen and (max-width: 800px) {

@@ -1,4 +1,4 @@
-.nav {
+.navigation {
   display: flex;
   align-items: center;
 }
@@ -6,48 +6,49 @@
 .nav__items {
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
-  padding-left: 70px;
+  line-height: 1.38;
+  padding-left: 68px;
 }
 
 .nav__item {
   color: #000000;
-  text-decoration: none;
 }
 
-.nav__active {
+.nav__item_active {
   font-weight: 500;
 }
-
 
 
 .nav__signup {
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.33;
 }
 
 .nav__signin {
   width: 76px;
   display: flex;
-  margin-left: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 15px;
+  align-items: center;
   justify-content: center;
   border-radius: 3px;
-  align-items: center;
   background: #2be080;
+  margin-left: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
 }
 
-.header_dark .nav__item {
+.header_black .nav__item {
   color: white;
 }
 
@@ -66,7 +67,7 @@
   .nav__signin {
     width: 54px;
     font-size: 10px;
-    margin-left: 15px;
+    margin-left: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
   }

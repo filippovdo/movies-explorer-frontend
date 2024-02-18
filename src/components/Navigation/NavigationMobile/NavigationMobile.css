@@ -30,13 +30,12 @@
   top: 0;
 }
 
-.nav-mobile__menu {
-}
 
-.nav-mobile__close-btn {
+
+.nav-mobile__close-button {
   width: 33px;
   height: 33px;
-  background-image: url(../../../images/close.svg);
+  background-image: url(../../../images/mobile_close.svg);
   background-size: contain;
   justify-self: self-end;
   margin: 22.44px 22.44px 0 0;
@@ -61,7 +60,7 @@
   padding-bottom: 4px;
 }
 
-.nav-mobile__active {
+.nav-mobile__item_active {
   border-bottom-style: solid;
 }
 
@@ -93,7 +92,7 @@
   color: black;
   font-size: 13px;
   font-weight: 500;
-  line-height: 0.92; 
+  line-height: 0.92;
 }
 
 .nav-mobile__account-icon {
@@ -122,7 +121,7 @@
     gap: 24px;
   }
 
-  .nav-mobile__close-btn {
+  .nav-mobile__close-button {
     margin: 13.44px 13.44px 0 0;
 
   }
@@ -133,10 +132,3 @@
 
 }
 
-/* .header_dark .nav-mobile__item {
-  color: white;
-}
-
-.header_dark .nav-mobile__account {
-  background-color: #2be080;
-} */

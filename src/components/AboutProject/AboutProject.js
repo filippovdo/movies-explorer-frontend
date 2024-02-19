@@ -11,7 +11,7 @@ function AboutProject() {
           </h2>
           <h3 className="AboutProject__text">
             Составление плана, работу над бэкендом, вёрстку, добавление
-            функциональности и ;финальные доработки.
+            функциональности и финальные доработки.
           </h3>
         </div>
         <div className="AboutProject__column">

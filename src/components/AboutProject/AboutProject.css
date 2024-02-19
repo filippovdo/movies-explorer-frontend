@@ -74,7 +74,8 @@
 }
 
 .AboutProject__week-left {
-  background: #2BE080;;
+  background: #2BE080;
+  ;
 }
 
 .AboutProject__week-right {
@@ -92,61 +93,86 @@
 }
 
 @media screen and (max-width: 880px) {
-
-  .container70{
-    padding-left:30px;
+  .AboutProject{
+    margin: 93px 50px 92px;
   }
 
-.AboutProject__container{
-  margin-top: 88px;
-}
+  .container70 {
+    padding-left: 30px;
+  }
+
+  .AboutProject__container {
+    margin-top: 88px;
+  }
+
   .project {
     margin: 90px 50px 90px;
   }
+
   .AboutProject__columns {
     margin-top: 74px;
     column-gap: 33px;
   }
+
   .AboutProject__title {
     margin-bottom: 16px;
   }
+
   .AboutProject__text {
     font-size: 12px;
   }
+
   .AboutProject__grid {
     margin-top: 93px;
   }
 }
 
 @media screen and (max-width: 580px) {
+
+  .AboutProject{
+    margin: 73px 18px 37px;
+  }
+  .AboutProject__container {
+    margin-top: 61px;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: repeat(2, 31px);
+  }
+
   .project {
     margin: 70px 18px 70px;
   }
+
   .AboutProject__name {
     padding-bottom: 28px;
     font-size: 18px;
     line-height: 22px;
   }
+
   .AboutProject__columns {
     flex-direction: column;
     row-gap: 56px;
+    margin-top: 60px;
   }
+
   .AboutProject__title {
     margin-bottom: 16px;
     font-size: 18px;
     line-height: 22px;
   }
+
   .AboutProject__text {
     font-size: 11px;
     line-height: 16px;
   }
+
   .AboutProject__grid {
     margin-top: 60px;
   }
+
   .AboutProject__week {
     font-size: 11px;
-    line-height: 13px;
   }
+
   .AboutProject__techs {
     padding-top: 10px;
     font-size: 11px;

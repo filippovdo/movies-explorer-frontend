@@ -55,7 +55,7 @@
     font-size: 28px;
     line-height: 1.78;
     letter-spacing: -1.12px;
-}
+  }
 
 
 }
@@ -71,15 +71,28 @@
   .portfolio {
     margin: 0 14px 70px;
   }
+
+  .portfolio__container {
+    padding: 11px 0 28px;
+    letter-spacing: +0.04em;
+  }
+
   .portfolio__title {
     font-size: 14px;
   }
+
   .portfolio__text {
     font-size: 18px;
     line-height: 28px;
+    letter-spacing: -0.72px;
   }
+
   .portfolio__arrow {
     font-size: 18px;
     line-height: 28px;
+  }
+
+  .portfolio__link {
+    margin-top: 0;
   }
 }

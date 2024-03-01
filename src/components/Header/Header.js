@@ -5,9 +5,8 @@ import NavigationBurger from "../Navigation/NavigationBurger/NavigationBurger";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
-function Header() {
+function Header({ loggedIn }) {
   const location = useLocation();
-  const [loggedIn, setLoggedIn] = useState(true);
   const [isNavigationMobileOpen, setIsNavigationMobileOpen] = useState(false);
 
   function handleBurgerClick() {

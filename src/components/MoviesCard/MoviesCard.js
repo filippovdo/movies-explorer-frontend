@@ -1,44 +1,48 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import cardButton from '../../images/card-button.svg';
-import cardButtonLike from '../../images/card-btn-like.svg';
-import cardButtonDelete from '../../images/button-delete.svg';
+import { MOVIES_API } from '../../utils/config';
+import getTimeFromMins from '../../utils/durationConverter';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation();
+  const isSaved = savedMovies.some((item) => item.movieId === movie.id);
+  const movieImgUrl =
+    typeof movie.image === 'string'
+      ? movie.image
+      : `${MOVIES_API}${movie.image.url}`;
 
   return (
+
     <li className='moviesCard'>
-      <img src={movie.link} alt={movie.name} className='moviesCard__img' />
-      <div className='moviesCard__info'>
-        <div className='moviesCard__description'>
-          <h2 className='moviesCard__name'>{movie.name}</h2>
-          {location.pathname === '/movies' && (
-            <button type='button' className='moviesCard__button-container button'>
-              <img
-                src={cardButton}
-                alt='кнопка лайка карточки'
-                className='moviesCard__button'
-              />
-            </button>
-          )}
-          {location.pathname === '/saved-movies' && (
-            <button
-              type='button'
-              className='moviesCard__button-container moviesCard__button-container_hidden button'
-            >
-              <img
-                src={cardButtonDelete}
-                alt='кнопка удаления карточки'
-                className='moviesCard__button'
-              />
-            </button>
-          )}
-        </div>
-        <p className='moviesCard__duration'>{movie.duration}</p>
+    <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
+      <img src={movieImgUrl} alt={movie.name} className='moviesCard__img' />
+    </a>
+
+    <div className='moviesCard__info'>
+      <div className='moviesCard__description'>
+        <h2 className='moviesCard__name'>{movie.nameRU}</h2>
+        {location.pathname === '/movies' && (
+          <button
+            onClick={() => onSave(movie)}
+            type='button'
+            className={`card__button button ${
+              isSaved ? 'card__button_active' : 'card__button_like'
+            } `}
+          ></button>
+        )}
+        {location.pathname === '/saved-movies' && (
+          <button
+            onClick={() => onDelete(movie._id)}
+            type='button'
+            className='card__button card__button_delete button'
+          ></button>
+        )}
       </div>
-    </li>
+      <p className='moviesCard__duration'>{getTimeFromMins(movie.duration)}</p>
+    </div>
+  </li>
+
   );
 }
 

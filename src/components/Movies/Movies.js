@@ -1,28 +1,142 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import { movies } from '../../utils/movies';
-import './Movies.css';
 
-function Movies() {
+import { useLocation } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import { movies } from "../../utils/moviesApi";
+import { moviesApi } from '../../utils/moviesApi';
+import "./Movies.css";
+import React, { useState, useEffect } from 'react';
+import { shortMovieDuration } from '../../utils/config';
+
+function Movies({ loggedIn, savedMovies, onSave }) {
   const location = useLocation();
+
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [isQuery, setIsQuery] = useState(false);
+  const [placeholder, setPlaceholder] = useState("Фильм");
+  const [filteredMovies, setFliteredMovies] = useState([]);
+  const [isError, setIsError] = useState("");
+  const [isSearchResult, setIsSearchResult] = useState(true);
+
+
+  useEffect(() => {
+    const SavedIputValue = JSON.parse(localStorage.getItem("inputValue"));
+    const SavedCheckboxState = JSON.parse(localStorage.getItem("isChecked"));
+    const SavedFilteredMovies = JSON.parse(
+      localStorage.getItem("filteredMovies")
+    );
+    if ({ SavedIputValue, SavedCheckboxState, SavedFilteredMovies }) {
+      setInputValue(SavedIputValue || "");
+      setIsChecked(SavedCheckboxState || false);
+      setFliteredMovies(SavedFilteredMovies || []);
+      setIsError("");
+    }
+  }, []);
+
+
+  const onSearch = (inputValue, isChecked, movies) => {
+    if (movies.length === 0) {
+      setIsLoading(true);
+      moviesApi
+        .getMovies()
+        .then((movies) => {
+          setMovies(movies);
+          setIsLoading(false);
+          onFilter(inputValue, isChecked, movies);
+          setIsError("");
+        })
+        .catch((err) => {
+          setIsError(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
+          console.log(`Ошибка получения фильмов: `, err);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      onFilter(inputValue, isChecked, movies);
+    }
+  };
+
+
+  const onFilter = (inputValue, isChecked, movies) => {
+    localStorage.setItem("inputValue", JSON.stringify(inputValue));
+    localStorage.setItem("isChecked", JSON.stringify(isChecked));
+    localStorage.setItem("movies", JSON.stringify(movies));
+
+    let searchResult = []; 
+    if (inputValue) {
+      searchResult = movies.filter((item) => {
+        const searchText =
+          item.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
+          item.nameEN.toLowerCase().includes(inputValue.toLowerCase());
+        return isChecked
+          ? searchText && item.duration <= shortMovieDuration
+          : searchText;
+      });
+    }
+    setFliteredMovies(searchResult);
+    localStorage.setItem("filteredMovies", JSON.stringify(searchResult));
+    searchResult.length > 0
+      ? setIsSearchResult(true)
+      : setIsSearchResult(false);
+  };
+
+  console.log(`isSearchResult :`, isSearchResult);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!isQuery) {
+      setPlaceholder("Нужно ввести ключевое слово");
+    } else {
+      setIsChecked(isChecked);
+      onSearch(inputValue, isChecked, movies);
+    }
+  }
+
+  function handleInputChange(e) {
+    setInputValue(e.target.value);
+    setPlaceholder("");
+    !e.target.value ? setIsQuery(false) : setIsQuery(true);
+  }
+
+  function handleCheckboxClick() {
+    !isChecked ? setIsChecked(true) : setIsChecked(false);
+    onSearch(inputValue, !isChecked, movies);
+  }
 
   return (
     <>
-      <div className='content'>
-        <Header />
+      <div className="content">
+        <Header loggedIn={loggedIn} />
         <main
           className={`movies html__centered ${
-            location.pathname === '/' ? '' : 'html__centered_s'
+            location.pathname === "/" ? "" : "html__centered_s"
           }`}
         >
-          <SearchForm />
-          <MoviesCardList movies={movies} />
-          <div className='movies__also'>
-            <button type='button' className='movies__also-btn button'>
+          <SearchForm
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            inputValue={inputValue}
+            onCheckbox={handleCheckboxClick}
+            isChecked={isChecked}
+            isRequest={isQuery}
+            placeholder={placeholder}
+          />
+          {isError && <div className="movies__error ">{isError}</div>}
+          <MoviesCardList
+            movies={filteredMovies}
+            savedMovies={savedMovies}
+            isLoading={isLoading}
+            onSave={onSave}
+            isSearchResult={isSearchResult}
+          />
+          <div className="movies__also">
+            <button type="button" className="movies__also-btn button">
               Ещё
             </button>
           </div>

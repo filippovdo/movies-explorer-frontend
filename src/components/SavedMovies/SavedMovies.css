@@ -1,0 +1,12 @@
+@media screen and (max-width: 1080px) {
+    .saved_movies {
+        padding-bottom: 150px;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .saved_movies {
+
+    }
+}

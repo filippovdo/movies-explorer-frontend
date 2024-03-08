@@ -4,3 +4,5 @@
 
 сайт: https://filippovdo.diplom.nomoredomainswork.ru/
 Backend: https://github.com/filippovdo/movies-explorer-api
+
+request: https://github.com/filippovdo/movies-explorer-frontend/pull/8

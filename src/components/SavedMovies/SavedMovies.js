@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-import "./SavedMovies.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import { shortMovieDuration } from "../../utils/config";
+import './SavedMovies.css';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { shortMovieDuration } from '../../utils/config';
 
 function SavedMovies({ loggedIn, savedMovies, onDelete }) {
-  const [filteredMovies, setFliteredMovies] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const [placeholder, setPlaceholder] = useState("Фильм");
+  const [placeholder, setPlaceholder] = useState('Фильм');
   const [isQuery, setIsQuery] = useState(false);
   const [isSearchResult, setIsSearchResult] = useState(true);
 
   useEffect(() => {
-    setFliteredMovies(savedMovies);
+    setFilteredMovies(savedMovies);
   }, [savedMovies]);
 
   const onFilter = (inputValue, isChecked, savedMovies) => {
-    let searchResult = savedMovies; //переменная для сохрарения результата поиска
-
-    searchResult = savedMovies.filter((item) => {
+    let searchResult = savedMovies.filter((item) => {
       const searchText =
         item.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
         item.nameEN.toLowerCase().includes(inputValue.toLowerCase());
@@ -32,38 +30,44 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
         : searchText;
     });
 
-    setFliteredMovies(searchResult);
+    setFilteredMovies(searchResult);
     searchResult.length > 0
       ? setIsSearchResult(true)
       : setIsSearchResult(false);
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!isQuery) {
-      setPlaceholder("Нужно ввести ключевое слово");
+      setPlaceholder('Нужно ввести ключевое слово');
     } else {
       setIsChecked(isChecked);
       onFilter(inputValue, isChecked, savedMovies);
     }
-  }
+  };
 
-  function handleInputChange(e) {
+  const handleInputChange = (e) => {
     setInputValue(e.target.value);
-    setPlaceholder("");
-    !e.target.value ? setIsQuery(false) : setIsQuery(true);
-  }
+    setPlaceholder('');
+    setIsQuery(!!e.target.value);
+  };
 
-  function handleCheckboxClick() {
-    !isChecked ? setIsChecked(true) : setIsChecked(false);
+  const handleCheckboxClick = () => {
+    setIsChecked(!isChecked);
     onFilter(inputValue, !isChecked, savedMovies);
-  }
+  };
+
+  const handleDelete = (movieId) => {
+    onDelete(movieId);
+    // После удаления карточки вызываем onFilter для обновления списка фильмов
+    onFilter(inputValue, isChecked, savedMovies.filter(movie => movie._id !== movieId));
+  };
 
   return (
     <>
-      <div className="content">
-        <Header />
-        <main className="saved_movies html__centered html__centered_s">
+      <div className='content'>
+        <Header loggedIn={loggedIn} />
+        <main className='saved_movies html__centered html__centered_s'>
           <SearchForm
             handleSubmit={handleSubmit}
             handleInputChange={handleInputChange}
@@ -72,9 +76,11 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
             isChecked={isChecked}
             placeholder={placeholder}
           />
-          <MoviesCardList             savedMovies={filteredMovies}
-            onDelete={onDelete}
-            isSearchResult={isSearchResult} />
+          <MoviesCardList
+            savedMovies={filteredMovies}
+            onDelete={handleDelete}
+            isSearchResult={isSearchResult}
+          />
         </main>
       </div>
       <Footer />
@@ -83,3 +89,4 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
 }
 
 export default SavedMovies;
+

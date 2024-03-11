@@ -7,11 +7,12 @@ import getTimeFromMins from '../../utils/durationConverter';
 function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation();
   const isSaved = savedMovies.some((item) => item.movieId === movie.id);
-  const movieImgUrl =
-    typeof movie.image === 'string'
-      ? movie.image
-      : `${MOVIES_API}${movie.image.url}`;
-
+const movieImgUrl =
+  typeof movie.image === 'string'
+    ? movie.image 
+    : movie.image && movie.image.url 
+      ? `${MOVIES_API}${movie.image.url}` 
+      : '';
   return (
 
     <li className='moviesCard'>

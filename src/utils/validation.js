@@ -1,41 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const useValidation = (value, validators) => {
-  const [validationResults, setValidationResults] = useState({
-    isEmpty: true,
-    isEmailError: false,
-    minLength: false,
-    maxLength: false,
-    isInputValid: false,
-  });
+export default function useValidation() {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isInputValid, setIsInputValid] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  useEffect(() => {
-    const results = {};
-    results.isEmpty = !value;
-    results.isEmailError = !/^\S+@\S+\.\S+$/.test(value);
-    results.minLength = value.length < validators.minLength;
-    results.maxLength = value.length > validators.maxLength;
-    results.isInputValid = !Object.values(results).some((result) => result);
-    setValidationResults(results);
-  }, [value, validators]);
+  function handleChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    const validationMessage = e.target.validationMessage;
+    const inputValid = e.target.validity.valid;
 
-  return validationResults;
-};
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: validationMessage });
+    setIsInputValid({ ...isInputValid, [name]: inputValid });
+    setIsFormValid(e.target.closest("form").checkValidity());
+  }
 
-const useInput = (initialValue, validators) => {
-  const [value, setValue] = useState(initialValue);
-  const [isTouched, setIsTouched] = useState(false);
-  const validationResults = useValidation(value, validators);
-
-  const onChange = (e) => {
-    setValue(e.target.value);
+  return {
+    handleChange,
+    values,
+    setValues,
+    errors,
+    isInputValid,
+    setIsInputValid,
+    isFormValid,
+    setIsFormValid,
   };
-
-  const onBlur = () => {
-    setIsTouched(true);
-  };
-
-  return { value, onChange, onBlur, isTouched, ...validationResults };
-};
-
-export default useInput;
+}

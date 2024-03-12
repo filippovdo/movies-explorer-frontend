@@ -5,6 +5,33 @@
   justify-content: center;
 }
 
+.movies__error {
+  text-align: center;
+  font-size: 20px;
+  line-height: normal;
+}
+
+.movies__error_hidden {
+  display: none;
+}
+
+.card__button {
+  width: 24px;
+  height: 24px;
+}
+
+.card__button_like {
+  background-image: url(../../images/card-button.svg);
+}
+
+.card__button_active {
+  background-image: url(../../images/card-btn-like.svg);
+}
+
+.card__button_delete {
+  background-image: url(../../images/button-delete.svg);
+}
+
 .movies__also-btn {
   width: 320px;
   height: 36px;
